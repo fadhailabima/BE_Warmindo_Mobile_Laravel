@@ -21,11 +21,11 @@ class Pelanggan extends Model
 
     public function Transaksi()
     {
-        return $this->hasMany(Transaksi::class, 'idpelanggan');
+        return $this->hasMany(Transaksi::class, 'idpelanggan', 'id');
     }
 
     public function PoinTransaksi()
     {
-        return $this->hasOne(PoinTransaksi::class, 'idpelanggan');
+        return $this->hasOne(PoinTransaksi::class, 'idpelanggan', 'id');
     }
 }

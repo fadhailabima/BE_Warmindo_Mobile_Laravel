@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('detailtransaksis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idtransaksi');
-            $table->string('idmenu');
+            $table->string('idtransaksi');
+            $table->unsignedBigInteger('idmenu');
             $table->string('namamenu');
             $table->string('harga');
             $table->string('jumlah');
@@ -29,7 +28,7 @@ return new class extends Migration
         });
 
         Schema::table('detailtransaksis', function (Blueprint $table) {
-            $table->foreign('idtransaksi')->references('id')->on('transaksis'); // Kunci asing ke kolom 'user_id' pada tabel 'users'
+            $table->foreign('idtransaksi')->references('idtransaksi')->on('transaksis'); // Kunci asing ke kolom 'user_id' pada tabel 'users'
         });
     }
 

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('mejas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_warung');
+            $table->string('id_warung');
             $table->string('kodemeja');
-            $table->foreign('id_warung')->references('id')->on('warungs');
+            $table->foreign('id_warung')->references('idwarung')->on('warungs');
             $table->timestamps();
         });
     }

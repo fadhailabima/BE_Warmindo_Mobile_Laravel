@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $primaryKey = 'idkaryawan'; // Memberitahu Eloquent bahwa primary key adalah 'id' (bukan 'id' integer default)
+    public $incrementing = false; // Menyatakan bahwa 'id' bukanlah auto-incrementing
+    protected $keyType = 'string';
+
     /**
      * The attributes that should be hidden for serialization.
      *

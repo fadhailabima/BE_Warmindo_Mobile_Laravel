@@ -16,14 +16,14 @@ return new class extends Migration {
             $table->id();
             $table->date('tanggal');
             $table->time('waktu');
-            $table->unsignedBigInteger('id_pengguna');
+            $table->string('id_pengguna');
             $table->enum('aktivitas', ['login', 'akses shift', 'logout'])->nullable();
             $table->timestamps();
             // $table->foreign('id_pengguna')->references('id')->on('users');
         });
 
         Schema::table('aktivitaspenggunas', function (Blueprint $table) {
-            $table->foreign('id_pengguna')->references('id')->on('users'); // Kunci asing ke kolom 'user_id' pada tabel 'users'
+            $table->foreign('id_pengguna')->references('idkaryawan')->on('users'); // Kunci asing ke kolom 'user_id' pada tabel 'users'
         });
     }
 

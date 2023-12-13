@@ -22,6 +22,6 @@ class AktivitasPengguna extends Model
 
     public function User()
     {
-        return $this->belongsTo(User::class, 'id_pengguna', 'id');
+        return $this->belongsTo(User::class, 'id_pengguna', 'idkaryawan');
     }
 }

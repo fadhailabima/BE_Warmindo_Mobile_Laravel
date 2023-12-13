@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal');
             $table->time('waktu');
-            $table->string('idpelanggan');
+            $table->unsignedBigInteger('idpelanggan');
             $table->string('jumlahpoin');
             $table->enum('status', ['tambah', 'kurang'])->nullable();
             $table->string('poinawal');

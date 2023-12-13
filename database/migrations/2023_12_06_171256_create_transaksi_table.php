@@ -14,20 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transaksis', function (Blueprint $table) {
-            $table->id();
+            $table->string('idtransaksi')->primary();
             $table->date('tanggal');
             $table->time('waktu');
             $table->boolean('shift')->default('1');
             $table->string('id_pengguna');
-            $table->string('id_pelanggan')->nullable();
+            $table->unsignedBigInteger('id_pelanggan')->nullable();
             $table->enum('status', ['baru','diproses','disajikan','selesai'])->nullable();
             $table->string('kodemeja');
             $table->string('namapelanggan')->nullable();
             $table->string('total');
             $table->enum('metode_pembayaran', ['cash', 'kartu kredit', 'kartu debit', 'qris'])->nullable();
             $table->string('totaldiskon');
-            $table->string('idpromosi')->nullable();
-            $table->foreign('id_pengguna')->references('id')->on('users');
+            $table->unsignedBigInteger('idpromosi')->nullable();
+            $table->foreign('id_pengguna')->references('idkaryawan')->on('users');
             $table->foreign('id_pelanggan')->references('id')->on('pelanggans');
             // $table->foreign('kodemeja')->references('kodemeja')->on('mejas');
             // $table->foreign('namapelanggan')->references('namapelanggan')->on('pelanggans');

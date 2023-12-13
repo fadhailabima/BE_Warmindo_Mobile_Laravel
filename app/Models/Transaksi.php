@@ -11,6 +11,10 @@ class Transaksi extends Model
 
     protected $table = 'transaksis';
 
+    protected $primaryKey = 'idtransaksi'; // Memberitahu Eloquent bahwa primary key adalah 'id' (bukan 'id' integer default)
+    public $incrementing = false; // Menyatakan bahwa 'id' bukanlah auto-incrementing
+    protected $keyType = 'string';
+
     protected $fillable = [
         'tanggal',
         'waktu',
@@ -34,7 +38,7 @@ class Transaksi extends Model
     }
     public function User()
     {
-        return $this->belongsTo(User::class, 'id_pengguna', 'id');
+        return $this->belongsTo(User::class, 'id_pengguna', 'idkaryawan');
     }
     public function Promosi()
     {
