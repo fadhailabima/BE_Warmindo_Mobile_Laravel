@@ -118,7 +118,7 @@ class UserController extends Controller
             // Menentukan shift berdasarkan jam
             if ($currentHour >= 10 && $currentHour <= 16) {
                 $shift = 'Shift 1';
-            } elseif ($currentHour >= 17 && $currentHour <= 22) {
+            } elseif ($currentHour >= 17 && $currentHour <= 23) {
                 $shift = 'Shift 2';
             } else {
                 // Jika di luar jam shift

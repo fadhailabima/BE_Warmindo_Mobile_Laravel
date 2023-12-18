@@ -199,6 +199,12 @@ class TransaksiController extends Controller
             $metodePembayaran = $transaksi->metode_pembayaran;
             $totalTransaksi = $transaksi->total;
 
+            // Menyiapkan opsi status untuk transaksi
+            $transaksiStatusOptions = ['baru', 'diproses', 'disajikan', 'selesai']; // Ganti dengan opsi status transaksi yang sesuai dengan struktur enum di database
+
+            // Menyiapkan opsi status untuk detail transaksi
+            $detailTransaksiStatusOptions = ['aktif', 'batal']; // Ganti dengan opsi status detail transaksi yang sesuai dengan struktur enum di database
+
             // Mengembalikan data dalam format JSON
             return response()->json([
                 'transaksi' => [
@@ -216,8 +222,8 @@ class TransaksiController extends Controller
                     'idpromosi' => $transaksi->idpromosi,
                     'detail_transaksi' => $detailTransaksi,
                 ],
-                // 'metode_pembayaran' => $metodePembayaran,
-                // 'total_transaksi' => $totalTransaksi,
+                'transaksiStatusOptions' => $transaksiStatusOptions, // Opsi status untuk transaksi
+                'detailTransaksiStatusOptions' => $detailTransaksiStatusOptions, // Opsi status untuk detail transaksi
             ], 200);
         } catch (\Exception $e) {
             // Jika terjadi kesalahan, kembalikan respons error
@@ -257,24 +263,4 @@ class TransaksiController extends Controller
         }
     }
 
-    public function getTransaksiStatus($idtransaksi)
-    {
-        try {
-            // Ambil status dari tabel transaksi
-            $transaksiStatus = Transaksi::where('idtransaksi', $idtransaksi)
-                ->pluck('status');
-
-            // Ambil status dari tabel detail transaksi
-            $detailTransaksiStatus = DetailTransaksi::select('status')
-                ->where('idtransaksi', $idtransaksi)
-                ->pluck('status');
-
-            return response()->json([
-                'transaksi_status' => $transaksiStatus,
-                'detail_transaksi_status' => $detailTransaksiStatus,
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
-        }
-    }
 }
