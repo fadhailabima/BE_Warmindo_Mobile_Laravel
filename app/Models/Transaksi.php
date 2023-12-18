@@ -22,7 +22,7 @@ class Transaksi extends Model
         'id_pengguna',
         'id_pelanggan',
         'status',
-        'kodemeja',
+        'kode_meja',
         'namapelanggan',
         'total',
         'metode_pembayaran',
@@ -46,7 +46,7 @@ class Transaksi extends Model
     }
     public function DetailTransaksi()
     {
-        return $this->hasOne(DetailTransaksi::class, 'idtransaksi');
+        return $this->hasMany(DetailTransaksi::class, 'idtransaksi');
     }
 
 }

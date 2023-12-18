@@ -17,15 +17,15 @@ return new class extends Migration
             $table->string('idtransaksi')->primary();
             $table->date('tanggal');
             $table->time('waktu');
-            $table->boolean('shift')->default('1');
+            $table->enum('shift', ['1', '2'])->nullable();
             $table->string('id_pengguna');
             $table->unsignedBigInteger('id_pelanggan')->nullable();
             $table->enum('status', ['baru','diproses','disajikan','selesai'])->nullable();
-            $table->string('kodemeja');
+            $table->string('kode_meja')->nullable();
             $table->string('namapelanggan')->nullable();
             $table->string('total');
             $table->enum('metode_pembayaran', ['cash', 'kartu kredit', 'kartu debit', 'qris'])->nullable();
-            $table->string('totaldiskon');
+            $table->string('totaldiskon')->nullable();
             $table->unsignedBigInteger('idpromosi')->nullable();
             $table->foreign('id_pengguna')->references('idkaryawan')->on('users');
             $table->foreign('id_pelanggan')->references('id')->on('pelanggans');
